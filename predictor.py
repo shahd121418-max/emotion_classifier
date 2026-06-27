@@ -15,11 +15,17 @@ class EmotionPredictor:
             "cuda" if torch.cuda.is_available() else "cpu"
         )
 
-        # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.tokenizer = AutoTokenizer.from_pretrained("faisalq/EgyBERT")
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            subfolder="model"
+        )
+        # self.tokenizer = AutoTokenizer.from_pretrained("faisalq/EgyBERT")
 
 
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            model_name,
+            subfolder="model"
+        )
 
         self.model.to(self.device)
         self.model.eval()
