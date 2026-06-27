@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.predictor import EmotionPredictor
-from app.schemas import (
+from predictor import EmotionPredictor
+from schemas import (
     PredictionRequest,
     PredictionResponse,
 )
