@@ -46,6 +46,6 @@ class EmotionPredictor:
         confidence = probs[0][idx].item()
 
         return {
-            "emotion": ID2LABEL[idx],
+            "emotion": id2label[idx],
             "confidence": round(confidence, 4),
         }
