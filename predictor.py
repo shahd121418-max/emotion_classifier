@@ -16,10 +16,8 @@ class EmotionPredictor:
         )
 
         # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.tokenizer = AutoTokenizer.from_pretrained(
-                model_name,
-                use_fast=False
-        )
+        self.tokenizer = AutoTokenizer.from_pretrained("faisalq/EgyBERT")
+
 
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
