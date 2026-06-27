@@ -1,10 +1,6 @@
 from pathlib import Path
-
 import torch
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification,
-)
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 from app.labels import ID2LABEL
 
@@ -13,23 +9,17 @@ class EmotionPredictor:
 
     def __init__(self):
 
-        model_path = Path(__file__).parent.parent / "model"
+        model_name = "ShahdAbdelnasser1/egybert-emotion-classifier"
 
         self.device = torch.device(
-            "cuda" if torch.cuda.is_available()
-            else "cpu"
+            "cuda" if torch.cuda.is_available() else "cpu"
         )
 
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            model_path
-        )
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        self.model = AutoModelForSequenceClassification.from_pretrained(
-            model_path
-        )
+        self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
         self.model.to(self.device)
-
         self.model.eval()
 
     @torch.no_grad()
@@ -50,13 +40,9 @@ class EmotionPredictor:
 
         outputs = self.model(**inputs)
 
-        probs = torch.softmax(
-            outputs.logits,
-            dim=1,
-        )
+        probs = torch.softmax(outputs.logits, dim=1)
 
         idx = probs.argmax(dim=1).item()
-
         confidence = probs[0][idx].item()
 
         return {
