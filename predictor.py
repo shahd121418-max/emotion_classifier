@@ -2,7 +2,7 @@ from pathlib import Path
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-from labels import ID2LABEL
+from labels import id2label
 
 
 class EmotionPredictor:
