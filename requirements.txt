@@ -8,3 +8,5 @@ transformers
 tokenizers
 
 safetensors
+
+sentencepiece
